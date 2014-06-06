@@ -22,22 +22,19 @@ lib/libmmosal.so
 etc/firmware/a300_pfp.fw
 etc/firmware/a300_pm4.fw
 etc/firmware/vidc_1080p.fw
-vendor/lib/egl/eglsubAndroid.so
-vendor/lib/egl/libEGL_adreno.so
-vendor/lib/egl/libGLESv1_CM_adreno.so
-vendor/lib/egl/libGLESv2_adreno.so
-vendor/lib/egl/libGLESv2S3D_adreno.so
-vendor/lib/egl/libq3dtools_adreno.so
-vendor/lib/libadreno_utils.so
-vendor/lib/libC2D2.so
-vendor/lib/libc2d30.so
-vendor/lib/libc2d30-a3xx.so
-vendor/lib/libCB.so
-vendor/lib/libgsl.so
-vendor/lib/libllvm-a3xx.so
-vendor/lib/libOpenCL.so
-vendor/lib/libOpenVG.so
-vendor/lib/libsc-a3xx.so
+lib/egl/eglsubAndroid.so
+lib/egl/libEGL_adreno200.so
+lib/egl/libGLESv1_CM_adreno200.so
+lib/egl/libGLESv2S3D_adreno200.so
+lib/egl/libGLESv2_adreno200.so
+lib/egl/libq3dtools_adreno200.so
+lib/libC2D2.so
+lib/libc2d2_a3xx.so
+lib/libgsl.so
+lib/libllvm-a3xx.so
+lib/libOpenCL.so
+lib/libOpenVG.so
+lib/libsc-a3xx.so
 
 # Graphics
 lib/libI420colorconvert.so
@@ -60,27 +57,23 @@ lib/libomission_avoidance.so
 lib/libqdi.so
 lib/libqdp.so
 lib/libreference-ril.so
-lib/libril-qc-qmi-1.so
 lib/libril-qcril-hook-oem.so
+lib/libril-qc-qmi-1.so
 lib/libril.so
 lib/libsecril-client.so
-vendor/lib/libidl.so
-vendor/lib/libqcci_legacy.so
-vendor/lib/libqmi.so
-vendor/lib/libqmi_cci.so
-vendor/lib/libqmi_client_qmux.so
-vendor/lib/libqmi_common_so.so
-vendor/lib/libqmi_csi.so
-vendor/lib/libqmi_encdec.so
-vendor/lib/libqmiservices.so
-
-# Time services
-bin/time_daemon
 lib/libtime_genoff.so
+lib/libidl.so
+lib/libqcci_legacy.so
+lib/libqmi.so
+lib/libqmi_cci.so
+lib/libqmi_client_qmux.so
+lib/libqmi_common_so.so
+lib/libqmi_csi.so
+lib/libqmi_encdec.so
+lib/libqmiservices.so
 
 # GPS
 lib/libloc_api_v02.so
-lib/libgeofence.so
 
 # Sensors
 bin/geomagneticd
@@ -88,7 +81,7 @@ lib/hw/sensors.msm8960.so
 
 # Camera
 bin/mm-qcamera-daemon
-lib/hw/camera.vendor.msm8960.so
+lib/hw/camera.msm8960.so
 lib/libadsprpc.so
 lib/libchromatix_imx175_antishake.so
 lib/libchromatix_imx175_default_video.so
@@ -132,6 +125,9 @@ lib/libsecnativefeature.so
 lib/libTsAccm.so
 lib/libTsAwb.so
 
+# Wi-Fi
+etc/wifi/wpa_supplicant.conf
+
 # Perf
 lib/libqc-opt.so
 
@@ -147,5 +143,32 @@ lib/libwvm.so
 # NFC firmware
 vendor/firmware/bcm2079xB4_firmware.ncd
 vendor/firmware/bcm2079xB4_pre_firmware.ncd
-vendor/firmware/bcm2079xB5_firmware.ncd
-vendor/firmware/bcm2079xB5_pre_firmware.ncd
+
+# Offmode charging
+bin/lpmkey
+bin/playlpm
+lib/libQmageDecoder.so
+media/Disconnected.qmg
+media/battery_batteryerror.qmg
+media/battery_charging_5.qmg
+media/battery_charging_10.qmg
+media/battery_charging_15.qmg
+media/battery_charging_20.qmg
+media/battery_charging_25.qmg
+media/battery_charging_30.qmg
+media/battery_charging_35.qmg
+media/battery_charging_40.qmg
+media/battery_charging_45.qmg
+media/battery_charging_50.qmg
+media/battery_charging_55.qmg
+media/battery_charging_60.qmg
+media/battery_charging_65.qmg
+media/battery_charging_70.qmg
+media/battery_charging_75.qmg
+media/battery_charging_80.qmg
+media/battery_charging_85.qmg
+media/battery_charging_90.qmg
+media/battery_charging_95.qmg
+media/battery_charging_100.qmg
+media/battery_error.qmg
+media/chargingwarning.qmg

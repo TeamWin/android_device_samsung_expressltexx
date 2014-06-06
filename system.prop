@@ -1,4 +1,4 @@
-# system.prop for serranoltexx
+# system.prop for expressltexx
 #
 
 rild.libpath=/system/lib/libril-qc-qmi-1.so
