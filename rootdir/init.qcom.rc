@@ -92,7 +92,7 @@ on boot
 
     # NFC
     setprop ro.nfc.port "I2C"
-    chmod 0777 /dev/pn547
+    chmod 0660 /dev/pn547
     chown nfc nfc /dev/pn547
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
