@@ -22,3 +22,4 @@ PRODUCT_NAME := full_expressltexx
 PRODUCT_DEVICE := expressltexx
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
+PRODUCT_MODEL := GT-I8730
