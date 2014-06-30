@@ -37,6 +37,8 @@ on init
     # External storage directories
     mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
     mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
+    mkdir /storage/sdcard1 0700 system system
+    mkdir /storage/usbdisk 0700 system system
     mkdir /storage/sdcard1 0700 root root
     mkdir /storage/usbdisk 0700 root root
 
@@ -54,6 +56,10 @@ on init
     symlink /storage/sdcard1 /mnt/external_sd
     symlink /storage/usbdisk /usbdisk
     symlink /storage/usbdisk /mnt/usbdisk
+
+    # Vibetonz
+    export VIBE_PIPE_PATH /dev/pipes
+    mkdir /dev/pipes 0771 system system
 
     # Create USB host bus directory here so that libusbhost
     # can start monitoring.
@@ -89,11 +95,6 @@ on boot
 
     # Remove SUID bit for iproute2 ip tool
     chmod 0755 /system/bin/ip
-
-    # NFC
-    setprop ro.nfc.port "I2C"
-    chmod 0660 /dev/pn547
-    chown nfc nfc /dev/pn547
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
 
@@ -169,18 +170,13 @@ on boot
     # Don't disable dmesg access for apps
     write /proc/sys/kernel/dmesg_restrict 0
 
-    # For CPU boost interface
+    symlink /dev/block/mmcblk0p10 /dev/block/param
+
     write /sys/module/cpu_boost/parameters/boost_ms 20
     write /sys/module/cpu_boost/parameters/sync_threshold 1458000
     write /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor 100000
     write /sys/module/cpu_boost/parameters/input_boost_freq 1134000
     write /sys/module/cpu_boost/parameters/input_boost_ms 40
-
-    # Increase read_ahead
-    write /sys/block/mmcblk0/bdi/read_ahead_kb 256
-    
-    # Set SSR level
-    setprop persist.sys.ssr.restart_level 3
 
 # MSM specific files that need to be created on /data
 on post-fs-data
@@ -394,12 +390,6 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     user root
     disabled
     oneshot
-
-service wifi-crda /system/bin/sh /system/etc/init.crda.sh
-   class late_start
-   user root
-   disabled
-   oneshot
 
 on property:sys.boot_completed=1
     start qcom-post-boot
