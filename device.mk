@@ -141,6 +141,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 #common build.props
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.product_ship=true \
     wifi.interface=wlan0 \
     ro.chipname=MSM8930 \
     ro.ril.hsxpa=1 \
