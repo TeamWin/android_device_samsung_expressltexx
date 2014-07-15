@@ -183,7 +183,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Enable Samsung EMS dial path
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.telephony.ril.v3=samsungEMSReq
+    ro.telephony.ril.v3=samsungEMSReq,qcomdsds
 
 # call common msm8930
 $(call inherit-product, device/samsung/msm8930-common/msm8930.mk)
