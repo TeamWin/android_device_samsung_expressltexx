@@ -2919,8 +2919,8 @@ SectionDevice
 		'RX2 MIX1 INP1':0:RX1
 		'RX3 MIX1 INP1':0:RX2
 		'DAC4 MUX':0:ON
-		'HPHL Volume':1:34
-		'HPHR Volume':1:34
+		'HPHL Volume':1:80
+		'HPHR Volume':1:80
 		'RX2 Digital Volume':2:67.7%
 		'RX3 Digital Volume':2:67.7%
 	EndSequence
@@ -4153,11 +4153,10 @@ SectionDevice
 	EnableSequence
 		'PRI_RX Channels':0:One
 		'DAC1 MUX':0:RX1
-		'RX1 MIX1 INP1':0:IIR1
-		'EAR PA Gain':0:POS_2_DB
+		'RX1 MIX1 INP1':0:RX1
+		'EAR PA Gain':0:POS_6_DB
 		'DAC1 Switch':1:1
-		'RX1 Digital Volume':1:100
-		'IIR1 INP1 Volume':1:100
+		'RX1 Digital Volume':2:71.0%
 	EndSequence
 
 	DisableSequence
@@ -4166,8 +4165,6 @@ SectionDevice
 		'EAR PA Gain':0:POS_6_DB
 		'DAC1 Switch':1:0
 		'RX1 Digital Volume':1:0
-		'RX1 MIX1 INP1':0:ZERO
-		'IIR1 INP1 Volume':1:0
 	EndSequence
 
 	ACDBID	7:1
@@ -4183,13 +4180,11 @@ SectionDevice
 		'DAC3 MUX':0:INV_RX1
 		'DAC2 MUX':0:RX1
 		'DAC1 MUX':0:RX1
-		'LINEOUT1 Volume':1:100
-		'LINEOUT2 Volume':1:100
+		'LINEOUT1 Volume':2:75.0%
+		'LINEOUT2 Volume':2:75.0%
 		'PRI_RX Channels':0:One
 		'RX1 MIX1 INP1':0:RX1
-		'RX1 Digital Volume':1:80
-		'RX1 MIX1 INP1':0:IIR1
-		'IIR1 INP1 Volume'1:1:80
+		'RX1 Digital Volume':2:68.5%
 		'PMIC SPK Gain':0:POS_20_DB
 	EndSequence
 
@@ -4215,13 +4210,11 @@ SectionDevice
 		'RX2 MIX1 INP1':0:RX1
 		'RX3 MIX1 INP1':0:RX2
 		'DAC4 MUX':0:ON
-		'HPHL Volume':1:100
-		'HPHR Volume':1:100
-		'RX2 Digital Volume':2:67.7%
-		'RX3 Digital Volume':2:67.7%
-		'RX2 MIX1 INP2':0:IIR1
-		'RX3 MIX1 INP2':0:IIR1
-		'IIR1 INP1 Volume':1:65
+		'HPHL Volume':1:80
+		'HPHR Volume':1:80
+		'RX2 Digital Volume':1:71
+		'RX3 Digital Volume':1:71
+		'COMP1 Switch':1:1
 	EndSequence
 
 	DisableSequence
@@ -4232,9 +4225,7 @@ SectionDevice
 		'HPHR Volume':1:0
 		'RX2 Digital Volume':1:0
 		'RX3 Digital Volume':1:0
-		'RX2 MIX1 INP2':0:ZERO
-		'RX3 MIX1 INP2':0:ZERO
-		'IIR1 INP1 Volume':1:0
+		'COMP1 Switch':1:0
 	EndSequence
 
 	ACDBID	10:1
@@ -4247,33 +4238,42 @@ SectionDevice
 	Comment "PROXY Rx + Speaker Headset Rx combo device"
 
 	EnableSequence
+		'DAC3 MUX':0:INV_RX1
+		'DAC2 MUX':0:RX1
+		'DAC1 MUX':0:RX1
+		'RX1 MIX1 INP1':0:RX1
+		'RX1 Digital Volume':1:65
+		'PMIC SPK Gain':0:POS_20_DB
 		'PRI_RX Channels':0:Two
+		'SPK_HPH Function':0:ON
 		'RX2 MIX1 INP1':0:RX1
 		'RX3 MIX1 INP1':0:RX2
 		'DAC4 MUX':0:ON
-		'HPHL Volume':1:100
-		'HPHR Volume':1:100
-		'RX2 Digital Volume':2:67.7%
-		'RX3 Digital Volume':2:67.7%
-		'RX2 MIX1 INP2':0:IIR1
-		'RX3 MIX1 INP2':0:IIR1
-		'IIR1 INP1 Volume':1:65
+		'LINEOUT1 Volume':1:100
+		'LINEOUT2 Volume':1:100
+		'HPHL Volume':1:25
+		'HPHR Volume':1:25
+		'RX2 Digital Volume':1:53
+		'RX3 Digital Volume':1:53
 	EndSequence
 
 	DisableSequence
+		'SPK_HPH Function':0:OFF
+		'RX1 MIX1 INP1':0:ZERO
+		'DAC3 MUX':0:ZERO
+		'DAC2 MUX':0:ZERO
+		'DAC1 MUX':0:ZERO
 		'RX2 MIX1 INP1':0:ZERO
 		'RX3 MIX1 INP1':0:ZERO
 		'DAC4 MUX':0:ZERO
 		'HPHL Volume':1:0
 		'HPHR Volume':1:0
+		'RX1 Digital Volume':1:0
 		'RX2 Digital Volume':1:0
 		'RX3 Digital Volume':1:0
-		'RX2 MIX1 INP2':0:ZERO
-		'RX3 MIX1 INP2':0:ZERO
-		'IIR1 INP1 Volume':1:0
 	EndSequence
 
-	ACDBID	10:1
+	ACDBID	15:1
 	EffectsMixerCTL "SRS TruMedia"
 
 EndSection
