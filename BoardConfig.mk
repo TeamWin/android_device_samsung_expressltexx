@@ -39,9 +39,6 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8960
 # Assert
 TARGET_OTA_ASSERT_DEVICE := expressltexx,expresslte
 
-# Kernel
-TARGET_KERNEL_VARIANT_CONFIG := msm8930_express_eur_lte_defconfig
-
 # NFC
 BOARD_HAVE_NFC := true
 
