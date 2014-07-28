@@ -37,7 +37,7 @@ TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 TARGET_BOOTLOADER_BOARD_NAME := MSM8960
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := expressltexx,expresslte
+TARGET_OTA_ASSERT_DEVICE := expressltexx,expresslte,GT-I8730
 
 # NFC
 BOARD_HAVE_NFC := true
