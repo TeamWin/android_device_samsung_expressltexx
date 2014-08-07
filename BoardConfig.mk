@@ -41,6 +41,8 @@ TARGET_OTA_ASSERT_DEVICE := expressltexx,expresslte,GT-I8730
 
 # NFC
 BOARD_HAVE_NFC := true
+BOARD_NFC_CHIPSET := pn547
+BOARD_NFC_HAL_SUFFIX := msm8960
 
 # Recovery
 BOARD_USES_MMCUTILS := true
@@ -60,9 +62,6 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/expressltexx/bluetooth
-
-# NFC
-BOARD_NFC_HAL_SUFFIX := msm8960
 
 # Disable initlogo, Samsungs framebuffer is weird
 TARGET_NO_INITLOGO := true
