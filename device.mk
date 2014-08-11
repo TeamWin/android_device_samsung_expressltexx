@@ -97,6 +97,10 @@ PRODUCT_PACKAGES += \
     libqcomfm_jni \
     FM2 \
     FMRecord
+    
+# Libgenlock
+PRODUCT_PACKAGES += \
+	libgenlock
 
 # Torch
 PRODUCT_PACKAGES += Torch
