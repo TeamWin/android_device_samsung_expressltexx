@@ -264,4 +264,7 @@
          NOTE ! - Enable for devices that have a fast response proximity sensor
     -->
     <bool name="config_proximityCheckOnWake">true</bool>
+    
+    <!-- SD card is hot-pluggable on this platform -->
+    <bool name="config_batterySdCardAccessibility">true</bool>
 </resources>
