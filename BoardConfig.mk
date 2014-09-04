@@ -96,3 +96,6 @@ BOARD_USES_QC_TIME_SERVICES := true
 
 # Build our own PowerHAL
 TARGET_POWERHAL_VARIANT :=
+
+# Custom RIL class
+BOARD_RIL_CLASS := ../../../device/samsung/expressltexx/ril/
