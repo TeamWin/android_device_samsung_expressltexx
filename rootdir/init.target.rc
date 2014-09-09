@@ -100,10 +100,6 @@ on post-fs-data
 
     chown system system /dev/tzic
 
-    # Create directory for ril data
-    mkdir /data/misc/radio 0775 radio radio
-    mkdir /data/misc/radio/hatp 0775 radio system
-
     # h2k permission
     chmod 0644 /efs/redata.bin
 
@@ -255,14 +251,13 @@ on post-fs-data
     chown system radio /sys/class/sensors/light_sensor/vendor
     chown system radio /sys/class/sensors/light_sensor/name
 
+    # Sec Jack
+    chown media system /sys/class/audio/earjack/reselect_jack
+
     chown system system /dev/i2c-11
     chmod 660 /dev/i2c-11
     chown system system /dev/i2c-24
     chmod 660 /dev/i2c-24
-
-    # Permissions for NCM
-    chmod 0660 /sys/class/android_usb/android0/terminal_version
-    chown system system /sys/class/android_usb/android0/terminal_version
 
     # NFC
     setprop ro.nfc.port "I2C"
@@ -282,33 +277,38 @@ on post-fs-data
     chown system system /sys/class/lcd/panel/window_type
     chown radio system /sys/class/lcd/panel/power_reduce
     chown system media_rw /sys/class/mdnie/mdnie/accessibility
+    chown system system /sys/class/mdnie/mdnie/cabc
     chown radio system /sys/class/lcd/panel/siop_enable
-    chown system system  /sys/class/mdnie/mdnie/cabc
+    chown radio system /sys/class/lcd/panel/temperature
 
+    # Auto Brightness
     chown system system /sys/class/backlight/panel/auto_brightness
+    chmod 0660 /sys/class/backlight/panel/auto_brightness
 
     # Dynamic FPS
     chown radio system /sys/class/lcd/panel/fps_change
     chmod 0664 /sys/class/lcd/panel/fps_change
 
-    # TSP
+    # Permission for Touchscreen, Touchkey.
+    chown radio system /sys/class/sec/sec_touchkey/touch_sensitivity
+    chown radio system /sys/class/sec/sec_touchkey/touchkey_firm_update
     chown system radio /sys/class/sec/tsp/cmd
-    chown system radio /sys/class/sec/sec_touch_ic
-    chmod 0777 /dev/s3c-g2touch
+    chown system radio /sys/class/sec/sec_touchkey/glove_mode
+    chown system radio /sys/class/sec/sec_touchkey/flip_mode
 
     chown radio system /sys/class/lcd/panel/power_reduce
     chown radio system /sys/class/lcd/panel/gamma_mode
     chown system system /sys/class/lcd/panel/lcd_type
     chown system system /sys/class/lcd/panel/lcd_power
 
-    # TKEY
-    chown radio system /sys/class/sec/sec_touchkey/touch_sensitivity
-    chown system radio /sys/class/sec/sec_touchkey/touchkey_firm_update
-    chown system radio /sys/class/sec/tsp/cmd
-
-    # Camera permission
+    # Permissions for Camera
+    chown system radio /sys/class/camera/rear/rear_camfw
+    chown system radio /sys/class/camera/rear/rear_camtype
+    chown system media_rw /sys/class/camera/rear/rear_checkApp
     chown system camera /sys/class/camera/flash/rear_flash
     chmod 664 /sys/class/camera/flash/rear_flash
+    chown system radio /sys/class/camera/front/front_camfw
+    chown system radio /sys/class/camera/front/front_camtype
 
     # Adjust YUV to RGB Conversion
     chown system camera /sys/class/graphics/fb0/csc_cfg
@@ -318,14 +318,18 @@ on post-fs-data
     chown system radio /sys/bus/platform/devices/msm8930-tmu/curr_temp
     chmod 664 /sys/bus/platform/devices/msm8930-tmu/curr_temp
 
+    # Vibetonz
+    chmod 0660 /dev/tspdrv
+    chown vibe vibe /dev/tspdrv
+
     # volume up/down key
     chown radio system /sys/class/sec/sec_key/wakeup_keys
 
     # permission for CHARGING
     chown system radio /sys/class/power_supply/battery/batt_reset_soc
-    chown system radio /sys/class/power_supply/battery/batt_slate_mode
     chown system radio /sys/class/power_supply/battery/update
     chown system radio /sys/class/power_supply/battery/factory_mode
+    chown system radio /sys/class/power_supply/battery/batt_slate_mode
     chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/call
     chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/video
     chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/music
@@ -339,8 +343,9 @@ on post-fs-data
     chown system radio /sys/class/power_supply/battery/gps
     chown system radio /sys/class/power_supply/battery/wifi
     chown system radio /sys/class/power_supply/battery/lte
-    chown system radio /sys/class/power_supply/battery/test_mode
     chown system radio /sys/class/power_supply/battery/wc_enable
+    chown system radio /sys/class/power_supply/battery/lcd
+    chown system radio /sys/class/power_supply/battery/batt_temp_table
 
     # SEC DVFS sysfs node
     chown radio system /sys/power/cpufreq_max_limit
@@ -367,6 +372,11 @@ on post-fs-data
     chown radio system /sys/devices/platform/sec-thermistor/temperature
     chown radio system /sys/class/power_supply/battery/siop_level
     chown radio system /sys/class/power_supply/battery/test_charge_current
+
+    # Permissions for Barcode Emul
+    chown system radio /sys/class/sec/sec_barcode_emul/barcode_send
+    chown system radio /sys/class/sec/sec_barcode_emul/barcode_ver_check
+    chown system radio /sys/class/sec/sec_barcode_emul/barcode_led_status
 
     # Permissions for IR_LED
     chown system radio /sys/class/sec/sec_ir/ir_send
@@ -403,7 +413,7 @@ service qrngd /system/bin/qrngd -f
     group root
 
 service qseecomd /system/bin/qseecomd
-    class late_start
+    class core
     user system
     group system
 
