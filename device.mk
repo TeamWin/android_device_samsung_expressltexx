@@ -88,8 +88,12 @@ PRODUCT_COPY_FILES += \
 
 # GPS HAL
 PRODUCT_PACKAGES += \
-    gps.msm8960 \
-    gps.conf
+    gps.msm8960
+
+# GPS config
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf \
+    $(LOCAL_PATH)/configs/sap.conf:system/etc/sap.conf
 
 # FM radio
 PRODUCT_PACKAGES += \
@@ -114,6 +118,10 @@ PRODUCT_PACKAGES += qrngd
 # qcmediaplayer
 PRODUCT_PACKAGES += qcmediaplayer
 
+# GPS/location security configuration file
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
+
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
@@ -122,7 +130,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=/system/lib/libqc-opt.so
 
-#common build.props
+# Common build props
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.product_ship=true \
     wifi.interface=wlan0 \
@@ -158,7 +166,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.rild.nitz_short_ons_3="" \
     ril.subscription.types=NV,RUIM \
     persist.gps.qmienabled=true \
-    persist.gps.qc_nlp_in_use=0 \
+    persist.gps.qc_nlp_in_use=1 \
+    ro.qc.sdk.izat.premium_enabled=0 \
+    ro.qc.sdk.izat.service_mask=0x0 \
+    ro.gps.agps_provider=1 \
     persist.fuse_sdcard=true \
     ro.vold.umsdirtyratio=50 \
     ro.cwm.enable_key_repeat=true \
