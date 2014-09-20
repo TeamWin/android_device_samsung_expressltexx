@@ -35,16 +35,9 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/expressltexx/overlay
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
-
-# Ramdisk
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/init.carrier.rc:root/init.carrier.rc
-
-# Permissions
-PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
 
 # Audio configuration
 PRODUCT_COPY_FILES += \
@@ -73,7 +66,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.qcom.syspart_fixup.sh:root/init.qcom.syspart_fixup.sh \
     $(LOCAL_PATH)/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
     $(LOCAL_PATH)/rootdir/init.target.rc:root/init.target.rc \
-    $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc
+    $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
+    $(LOCAL_PATH)/rootdir/init.carrier.rc:root/init.carrier.rc
 
 # Etc scripts
 PRODUCT_COPY_FILES += \
