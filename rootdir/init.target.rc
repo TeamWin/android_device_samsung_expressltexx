@@ -450,7 +450,7 @@ service bugreport /system/bin/dumpstate -d -p -B \
     keycodes 114 115 116
 
 # insthk
-+service insthk /system/bin/insthk
+service insthk /system/bin/insthk
     class main
     user root
     disabled
