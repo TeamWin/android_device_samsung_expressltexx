@@ -177,6 +177,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     qcom.hw.aac.encoder=true \
     ro.config.max_starting_bg=8
 
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.secure=0 \
+    ro.adb.secure=0 \
+    ro.debuggable=1
+
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=ExpressRIL
