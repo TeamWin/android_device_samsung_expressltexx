@@ -19,7 +19,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml
 
 PRODUCT_PACKAGES += \
-    nfc_nci.msm8960 \
+    nfc_nci.pn54x.default \
     NfcNci \
     Tag \
     com.android.nfc_extras
