@@ -96,10 +96,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	libgenlock
 
-# Torch
-PRODUCT_PACKAGES += \
-    Torch
-
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8960
