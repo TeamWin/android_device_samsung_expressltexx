@@ -150,7 +150,7 @@ on post-fs-data
 
     # geomagnetic_raw
     chown compass input /sys/class/input/input4/offsets
-    chown system input /sys/class/input/input4/dynamic_matrix
+    chown compass input /sys/class/input/input4/dynamic_matrix
     chown system input /sys/class/input/input4/threshold
     chown system input /sys/class/input/input4/distortion
     chown system input /sys/class/input/input4/shape
@@ -287,11 +287,72 @@ on post-fs-data
     chown system radio /sys/class/sensors/proximity_sensor/prox_thresh
     chown system radio /sys/class/sensors/proximity_sensor/vendor
     chown system radio /sys/class/sensors/proximity_sensor/name
+    chown system radio /sys/class/sensors/proximity_sensor/thresh_high
+    chown system radio /sys/class/sensors/proximity_sensor/thresh_low
+    chown system radio /sys/class/sensors/proximity_sensor/barcode_emul_en
 
+    # Light_sensor    
     chown system radio /sys/class/sensors/light_sensor/lux
     chown system radio /sys/class/sensors/light_sensor/raw_data
     chown system radio /sys/class/sensors/light_sensor/vendor
     chown system radio /sys/class/sensors/light_sensor/name
+
+    # Alps sensor
+    chown system system /dev/alps_io
+    chmod 0644 /dev/alps_io
+
+    # Gyro_sensor
+    chown system radio /sys/class/sensors/gyro_sensor/power_on
+    chown system radio /sys/class/sensors/gyro_sensor/power_off
+    chown system radio /sys/class/sensors/gyro_sensor/temperature
+    chown system radio /sys/class/sensors/gyro_sensor/selftest
+    chown system radio /sys/class/sensors/gyro_sensor/selftest_dps
+    chown system radio /sys/class/sensors/gyro_sensor/vendor
+    chown system radio /sys/class/sensors/gyro_sensor/name
+
+    # Barometer_sensor
+    chown system radio /sys/class/sensors/barometer_sensor/sea_level_pressure
+    chown system radio /sys/class/sensors/barometer_sensor/eeprom_check
+    chown system radio /sys/class/sensors/barometer_sensor/vendor
+    chown system radio /sys/class/sensors/barometer_sensor/name
+    chown system radio /sys/class/sensors/barometer_sensor/calibration
+
+    # Magnetic_sensor
+    chown system radio /sys/class/sensors/magnetic_sensor/raw_data
+    chown system radio /sys/class/sensors/magnetic_sensor/vendor
+    chown system radio /sys/class/sensors/magnetic_sensor/name
+
+    # uv_sensor
+    chown system radio /sys/class/sensors/uv_sensor/vendor
+    chown system radio /sys/class/sensors/uv_sensor/name
+    chown system radio /sys/class/sensors/uv_sensor/raw_data
+    chown system radio /sys/class/sensors/uv_sensor/power_on
+    chown system radio /sys/class/sensors/uv_sensor/power_off
+
+    # Temphumidity_sensor
+    chown system radio /sys/class/sensors/temphumidity_sensor/vendor
+    chown system radio /sys/class/sensors/temphumidity_sensor/name
+    chown system radio /sys/class/sensors/temphumidity_sensor/engine_ver
+    chown system radio /sys/class/sensors/temphumidity_sensor/engine_ver2
+    chown system radio /sys/class/sensors/temphumidity_sensor/cp_thm
+    chown system radio /sys/class/sensors/temphumidity_sensor/send_accuracy
+
+    # SensorHub
+    chown system radio /sys/class/sensors/ssp_sensor/enable
+    chown system radio /sys/class/sensors/ssp_sensor/enable_irq
+    chown system radio /sys/class/sensors/ssp_sensor/mcu_rev
+    chown system radio /sys/class/sensors/ssp_sensor/mcu_name
+    chown system radio /sys/class/sensors/ssp_sensor/mcu_test
+    chown system radio /sys/class/sensors/ssp_sensor/mcu_reset
+    chown system radio /sys/class/sensors/ssp_sensor/mcu_update
+    chown system radio /sys/class/sensors/ssp_sensor/mcu_sleep_test
+    chown system radio /sys/class/sensors/ssp_sensor/ori_poll_delay
+    chown system radio /sys/class/sensors/ssp_sensor/mag_poll_delay
+    chown system radio /sys/class/sensors/ssp_sensor/temp_humi_poll_delay
+
+    # Gesture_sensor
+    chown system radio /sys/class/sensors/gesture_sensor/ir_current
+    chown system radio /sys/class/sensors/gesture_sensor/selftest
 
     # Sec Jack
     chown media system /sys/class/audio/earjack/reselect_jack
@@ -306,6 +367,9 @@ on post-fs-data
     chmod 0660 /dev/pn547
     chown nfc nfc /dev/pn547
     symlink /dev/pn547 /dev/pn544
+
+    chmod 0660 /dev/pn544
+    chown nfc nfc /dev/pn544
 
     # MDNIE
     chown system system  /sys/class/mdnie/mdnie/lcdtype
@@ -322,9 +386,9 @@ on post-fs-data
     chown system media_rw /sys/class/mdnie/mdnie/accessibility
     chown system system /sys/class/mdnie/mdnie/cabc
     chown radio system /sys/class/lcd/panel/siop_enable
-    chown radio system /sys/class/lcd/panel/temperature
+    chown radio system  /sys/class/lcd/panel/temperature
 
-    # Auto Brightness
+# Auto Brightness
     chown system system /sys/class/backlight/panel/auto_brightness
     chmod 0660 /sys/class/backlight/panel/auto_brightness
 
@@ -332,19 +396,15 @@ on post-fs-data
     chown radio system /sys/class/lcd/panel/fps_change
     chmod 0664 /sys/class/lcd/panel/fps_change
 
-    # Permission for Touchscreen, Touchkey.
+# Permission for Touchscreen, Touchkey.
+    chown system system /sys/class/sec/sec_touchkey/brightness
     chown radio system /sys/class/sec/sec_touchkey/touch_sensitivity
     chown radio system /sys/class/sec/sec_touchkey/touchkey_firm_update
     chown system radio /sys/class/sec/tsp/cmd
     chown system radio /sys/class/sec/sec_touchkey/glove_mode
     chown system radio /sys/class/sec/sec_touchkey/flip_mode
 
-    chown radio system /sys/class/lcd/panel/power_reduce
-    chown radio system /sys/class/lcd/panel/gamma_mode
-    chown system system /sys/class/lcd/panel/lcd_type
-    chown system system /sys/class/lcd/panel/lcd_power
-
-    # Permissions for Camera
+# Permissions for Camera
     chown system radio /sys/class/camera/rear/rear_camfw
     chown system radio /sys/class/camera/rear/rear_camtype
     chown system media_rw /sys/class/camera/rear/rear_checkApp
@@ -395,10 +455,17 @@ on post-fs-data
     chown radio system /sys/power/cpufreq_min_limit
     chown radio system /sys/power/cpufreq_table
     chown radio system /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+    chown radio system /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+    chown radio system /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies
     chmod 664 /sys/power/cpufreq_max_limit
     chmod 664 /sys/power/cpufreq_min_limit
     chmod 664 /sys/power/cpufreq_table
     chmod 664 /sys/class/kgsl/kgsl-3d0/max_pwrlevel
+    chmod 664 /sys/class/kgsl/kgsl-3d0/min_pwrlevel
+    chmod 664 /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies
+
+    chown radio system /sys/devices/system/cpu/kernel_max
+    chmod 664 /sys/devices/system/cpu/kernel_max
 
     # OTG Test
     chown system radio /sys/class/host_notify/usb_otg/booster
@@ -442,20 +509,15 @@ service thermald /system/bin/thermald
     user root
     group root
 
-service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
+service mpdecision /system/bin/mpdecision --avg_comp
     class main
     user root
     disabled
 
 service qseecomd /system/bin/qseecomd
-    class core
+    class late_start
     user system
     group system
-
-service geomagneticd /system/bin/geomagneticd
-    class late_start
-    user compass
-    group system input
 
 service geomagneticd /system/bin/geomagneticd
     class late_start

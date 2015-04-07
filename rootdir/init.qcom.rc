@@ -40,8 +40,6 @@ on init
     # External storage directories
     mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
     mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
-    mkdir /storage/sdcard1 0700 system system
-    mkdir /storage/usbdisk 0700 system system
     mkdir /storage/sdcard1 0700 root root
     mkdir /storage/usbdisk 0700 root root
 
@@ -59,10 +57,6 @@ on init
     symlink /storage/sdcard1 /mnt/external_sd
     symlink /storage/usbdisk /usbdisk
     symlink /storage/usbdisk /mnt/usbdisk
-
-    # Vibetonz
-    export VIBE_PIPE_PATH /dev/pipes
-    mkdir /dev/pipes 0771 system system
 
     # Create USB host bus directory here so that libusbhost
     # can start monitoring.
@@ -327,12 +321,6 @@ service iprenew_bt-pan /system/bin/dhcpcd -n
     disabled
     oneshot
 
-service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
-    class late_start
-    user root
-    disabled
-    oneshot
-
 service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     class late_start
     user root
@@ -391,6 +379,5 @@ on property:persist.sys.ssr.restart_level=3
     write /sys/module/subsystem_restart/parameters/restart_level 3
 
 on property:sys.boot_completed=1
-    start qcom-post-boot
     start qcom-audio
     start qcom-wifi
