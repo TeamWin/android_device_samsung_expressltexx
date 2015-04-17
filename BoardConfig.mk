@@ -26,7 +26,7 @@
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/expressltexx/include
 
 # Kernel
-BOARD_KERNEL_CMDLINE         := androidboot.hardware=qcom user_debug=23 zcache androidboot.bootdevice=msm_sdcc.1
+BOARD_KERNEL_CMDLINE         := androidboot.hardware=qcom androidboot.selinux=permissive user_debug=23 zcache androidboot.bootdevice=msm_sdcc.1
 BOARD_KERNEL_BASE            := 0x80200000
 BOARD_MKBOOTIMG_ARGS         := --ramdisk_offset 0x02000000
 BOARD_KERNEL_PAGESIZE        := 2048
@@ -44,7 +44,9 @@ BOARD_HAVE_NFC := true
 BOARD_NFC_CHIPSET := pn547
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/samsung/expressltexx/rootdir/fstab.qcom
+BOARD_USES_MMCUTILS := true
+BOARD_HAS_NO_MISC_PARTITION := true
+#TARGET_RECOVERY_FSTAB := device/samsung/expressltexx/rootdir/fstab.qcom
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -94,3 +96,31 @@ BOARD_RIL_CLASS := ../../../device/samsung/expressltexx/ril/
 
 # CMHW
 BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw
+
+# TWRP config
+TARGET_RECOVERY_FSTAB := device/samsung/expressltexx/recovery/twrp.fstab
+DEVICE_RESOLUTION := 480x800
+#BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+RECOVERY_SDCARD_ON_DATA := true
+TW_INTERNAL_STORAGE_PATH := "/data/media/0"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_NO_REBOOT_BOOTLOADER := true
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_SAMSUNG := true
+TW_CRYPTO_FS_TYPE := "ext4"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p15"
+TW_CRYPTO_MNT_POINT := "/data"
+TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,noauto_da_alloc,journal_async_commit,errors=panic wait,check,encryptable=footer"
+TW_CRYPTO_FS_FLAGS := "0x00000406"
+TW_CRYPTO_KEY_LOC := "footer"
+TW_HAS_DOWNLOAD_MODE := true
+BOARD_HAS_NO_REAL_SDCARD := true
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+#TARGET_RECOVERY_INITRC := device/samsung/loganreltexx/recovery/init.recovery.rc
+BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_RECOVERY_SWIPE := true
+BOARD_SUPPRESS_EMMC_WIPE := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
