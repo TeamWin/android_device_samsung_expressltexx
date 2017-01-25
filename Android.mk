@@ -21,6 +21,8 @@
 
 LOCAL_PATH := $(call my-dir)
 
+$(shell mkdir -p out/target/product/expressltexx/obj/KERNEL_OBJ/drivers/thermal/intelli)
+
 ifeq ($(BOARD_VENDOR),samsung)
 ifeq ($(TARGET_BOARD_PLATFORM),msm8960)
 ifneq ($(filter expressltexx,$(TARGET_DEVICE)),)

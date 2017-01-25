@@ -18,11 +18,13 @@
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
 
-#define BTA_DISABLE_DELAY 1000 /* in milliseconds */
+#define BTA_DISABLE_DELAY 100 /* in milliseconds */
 #define BLUETOOTH_QTI_SW TRUE
-// Disables read remote device feature
-#define BTA_SKIP_BLE_READ_REMOTE_FEAT FALSE
-#define MAX_L2CAP_CHANNELS 16
-// skips conn update at conn completion
-#define BTA_BLE_SKIP_CONN_UPD FALSE
+#define BTA_HOST_INTERLEAVE_SEARCH TRUE
+#define SC_MODE_INCLUDED FALSE
+#define HCI_RAW_CMD_INCLUDED FALSE
+#define SDP_DEBUG FALSE
+#define BTSNOOP_MEM FALSE
+#define KERNEL_MISSING_CLOCK_BOOTTIME_ALARM TRUE
+
 #endif
