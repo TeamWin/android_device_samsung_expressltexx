@@ -99,7 +99,7 @@ BOARD_HARDWARE_CLASS += device/samsung/expressltexx/cmhw
 
 # TWRP config
 LZMA_RAMDISK_TARGETS := boot,recovery
-TARGET_RECOVERY_FSTAB := device/samsung/loganreltexx/recovery/twrp.fstab
+TARGET_RECOVERY_FSTAB := device/samsung/expressltexx/recovery/twrp.fstab
 TARGET_RECOVERY_DENSITY := mdpi
 TW_THEME := portrait_hdpi
 RECOVERY_GRAPHICS_FORCE_USE_LINELENGTH := true
@@ -113,7 +113,7 @@ TW_HAS_DOWNLOAD_MODE := true
 TW_INCLUDE_CRYPTO := true
 BOARD_HAS_NO_REAL_SDCARD := true
 TW_CRYPTO_FS_TYPE := "ext4"
-TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p23"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p15"
 TW_CRYPTO_MNT_POINT := "/data"
 TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,noauto_da_alloc,journal_async_commit,errors=panic"
 TW_CRYPTO_FS_FLAGS := "0x00000406"
