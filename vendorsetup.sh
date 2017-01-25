@@ -1,1 +1,1 @@
-add_lunch_combo cm_expressltexx-userdebug
+add_lunch_combo lineage_expressltexx-userdebug

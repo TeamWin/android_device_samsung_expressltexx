@@ -1,5 +1,23 @@
-Copyright 2014 - The CyanogenMod Project
-
 Device configuration for Samsung Galaxy Express GT-i8730 (European LTE model).
+===================================== 
+
+| Basic   | Spec Sheet                  |
+| -------:|:--------------------------- |
+| CPU     | Dual-core 1.2 GHz Krait 200 | 
+| CHIPSET | Qualcomm Snapdragon 400 |
+| GPU     | Adreno 305 |
+| Memory  | 1GB RAM |
+| Shipped Android Version | 4.1.2 |
+| Storage | 8GB |
+| MicroSD | Up to 32GB |
+| Battery | 2000 mAh |
+| Display | 4,5 inch |
+| Camera  | 5 MP, 2592 x 1944 pixels |
+
+
+![Galaxy Express](https://www.sammobile.com/wp-content/themes/sammobile-4/templates/compare-page/uploads/GT-I8730.jpg "Galaxy Express")
+
+Copyright (C)  2013-2016, The CyanogenMod Project
+Copyright (C) 2017, The LineageOS Project
 
 WORK IN PROGRESS. WILL EAT YOUR CAT.

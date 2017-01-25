@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 The CyanogenMod Project
+ * Copyright (C) 2016 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-#ifndef DEVICE_PERMS_H
-#define DEVICE_PERMS_H
-
-#define PROPERTY_PERMS_APPEND \
-    { "persist.audio.",   AID_SYSTEM,   0 }, \
-    { "persist.sys.camera.", AID_MEDIA, 0 }, \
-    { "sys.media.vdec.sw", AID_SHELL, 0 },
-#endif /* DEVICE_PERMS_H */
+/* MediaBufferGroup::MediaBufferGroup */
+extern "C" int _ZN7android16MediaBufferGroupC1Ej(unsigned int);
+extern "C" int _ZN7android16MediaBufferGroupC1Ev() {
+    return _ZN7android16MediaBufferGroupC1Ej(0);
+}

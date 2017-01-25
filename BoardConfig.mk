@@ -26,80 +26,81 @@
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/expressltexx/include
 
 # Kernel
-BOARD_KERNEL_CMDLINE         := androidboot.hardware=qcom androidboot.selinux=permissive user_debug=23 zcache androidboot.bootdevice=msm_sdcc.1
-BOARD_KERNEL_BASE            := 0x80200000
-BOARD_MKBOOTIMG_ARGS         := --ramdisk_offset 0x02000000
-BOARD_KERNEL_PAGESIZE        := 2048
-TARGET_KERNEL_SOURCE         := kernel/samsung/msm8930-kotzir
-TARGET_KERNEL_CONFIG         := cyanogen_express_defconfig
-TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=22 zcache msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1 androidboot.selinux=permissive
+BOARD_KERNEL_BASE := 0x80200000
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
+BOARD_KERNEL_PAGESIZE := 2048
+TARGET_KERNEL_SOURCE := kernel/samsung/msm8930-common
+TARGET_KERNEL_CONFIG := samsung_express_defconfig
+TARGET_KERNEL_VARIANT_CONFIG := msm8930_express_eur_lte_defconfig
 
+# Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8960
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := expressltexx,expresslte,GT-I8730,GT-I8730T
 
-# NFC
-BOARD_HAVE_NFC := true
-BOARD_NFC_CHIPSET := pn547
-
 # Recovery
-BOARD_USES_MMCUTILS := true
-BOARD_HAS_NO_MISC_PARTITION := true
-#TARGET_RECOVERY_FSTAB := device/samsung/expressltexx/rootdir/fstab.qcom
-COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
+TARGET_RECOVERY_FSTAB := device/samsung/expressltexx/rootdir/fstab.qcom
 
+# Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 10485760
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 10485760
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1415577600
+BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5079285760
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_CACHEIMAGE_PARTITION_SIZE := 880803840
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/expressltexx/bluetooth
 
+# NFC
+#BOARD_HAVE_NFC := true
+#BOARD_NFC_CHIPSET := pn547
+#BOARD_NFC_LPM_LOSES_CONFIG := true
+
+# Charger
+BOARD_NO_CHARGER_LED := true
 
 # Audio
-AUDIO_FEATURE_ENABLED_INCALL_MUSIC := false
-AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := false
-BOARD_HAVE_SAMSUNG_AUDIO := true
-BOARD_USES_LEGACY_ALSA_AUDIO := true
-BOARD_USES_FLUENCE_INCALL := true
-BOARD_USES_FLUENCE_FOR_VOIP := true
-BOARD_USES_SEPERATED_AUDIO_INPUT := true
-BOARD_USES_SEPERATED_HEADSET_MIC := true
-BOARD_USES_SEPERATED_VOICE_SPEAKER := true
-BOARD_USES_SEPERATED_VOIP := true
-QCOM_CSDCLIENT_ENABLED := false
-COMMON_GLOBAL_CFLAGS += -DLPA_DEFAULT_BUFFER_SIZE=32
+USE_CUSTOM_AUDIO_POLICY := 1
+
+# Needed for LPA
+BOARD_GLOBAL_CFLAGS += -DLPA_DEFAULT_BUFFER_SIZE=32
+
+# FM
+AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
+BOARD_HAVE_QCOM_FM := true
+TARGET_FM_LEGACY_PATCHLOADER := true
 
 # Allow suspend in charge mode
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
-
-# Enable QCOM FM feature
-AUDIO_FEATURE_ENABLED_FM := true
-QCOM_FM_ENABLED := true
-BOARD_USES_SEPERATED_FM := true
 
 # Camera
 TARGET_NEED_DISABLE_AUTOFOCUS := true
 TARGET_NEED_DISABLE_FACE_DETECTION := true
 TARGET_NEED_DISABLE_FACE_DETECTION_BOTH_CAMERAS := true
 
-# Build our own PowerHAL
-TARGET_POWERHAL_VARIANT :=
-
-# Custom RIL class
+# RIL
+TARGET_RIL_VARIANT := caf
+BOARD_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
 BOARD_RIL_CLASS := ../../../device/samsung/expressltexx/ril/
 
+# Time service
+BOARD_USES_QC_TIME_SERVICES := true
+
 # CMHW
-BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw
+BOARD_HARDWARE_CLASS += device/samsung/expressltexx/cmhw
 
 # TWRP config
-TARGET_RECOVERY_FSTAB := device/samsung/expressltexx/recovery/twrp.fstab
+LZMA_RAMDISK_TARGETS := boot,recovery
+TARGET_RECOVERY_FSTAB := device/samsung/loganreltexx/recovery/twrp.fstab
+TARGET_RECOVERY_DENSITY := mdpi
 TW_THEME := portrait_hdpi
 RECOVERY_GRAPHICS_FORCE_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
@@ -112,7 +113,7 @@ TW_HAS_DOWNLOAD_MODE := true
 TW_INCLUDE_CRYPTO := true
 BOARD_HAS_NO_REAL_SDCARD := true
 TW_CRYPTO_FS_TYPE := "ext4"
-TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p15"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p23"
 TW_CRYPTO_MNT_POINT := "/data"
 TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,noauto_da_alloc,journal_async_commit,errors=panic"
 TW_CRYPTO_FS_FLAGS := "0x00000406"
@@ -125,3 +126,5 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
 BOARD_SUPPRESS_EMMC_WIPE := true
+BOARD_USES_MMCUTILS := true
+BOARD_HAS_NO_MISC_PARTITION := true
